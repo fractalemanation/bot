@@ -22,7 +22,7 @@ $app->post('/bot', function() use($app) {
 	if ($data->secret !== getenv('VK_SECRET_TOKEN') && $data->type !== 'confirmation') return 'wasted';
 	switch ($data->type) {
 		case 'confirmation':
-			return getenv('VK_CONFIGURATION_CODE');
+			return getenv('VK_CONFIRMATION_CODE');
 			break;
 		case 'message_new':
 			# code...
