@@ -33,7 +33,7 @@ $app->post('/bot', function() use($app) {
 			try {
 			    $parser = new FormulaParser($formula, $precision);
 			    $result = $parser->getResult();
-			    $request_params['message'] = 'Ответ: '.number_format($result[1], $precision, '.', ',');
+			    $request_params['message'] = 'Ответ: '.number_format($result['1'], $precision, '.', ',');
 			} catch (\Exception $e) {
 			    $request_params['message'] = 'Указана неверная формула, попробуйте снова!';
 			}
