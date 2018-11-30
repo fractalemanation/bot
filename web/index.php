@@ -19,7 +19,7 @@ $app->get('/', function() use($app) {
 $app->post('/bot', function() use($app) {
 	$data = json_decode(file_get_contents('php://input'));
 	if (!$data) return 'wastedFirst';
-	if ($data->secret !== getenv('VK_SECRET_TOKEN') && $data->type !== 'confirmation') return 'wastedSecond';
+	if ($data->secret !== getenv('VK_SECRET_TOKEN') && $data->type !== 'confirmation' && $data->type !== 'message_new') return getenv('VK_SECRET_TOKEN').'}}}}}}}}'.$data->secret;
 	switch ($data->type) {
 		case 'confirmation':
 			return getenv('VK_CONFIRMATION_CODE');
