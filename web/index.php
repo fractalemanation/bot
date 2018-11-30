@@ -27,7 +27,7 @@ $app->post('/bot', function() use($app) {
 			return getenv('VK_CONFIRMATION_CODE');
 			break;
 		case 'message_new':
-			$formula = '3*x^2 - 4*y + 3/y';
+			$formula = $data->object->body;
 			$precision = 2; 
 			$request_params = array('user_id' => $data->object->user_id, 'message' => 'Message text', 'access_token' => getenv('VK_SECRET_TOKEN'), 'v' => '5.69');
 			try {
