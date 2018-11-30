@@ -27,11 +27,13 @@ $app->post('/bot', function() use($app) {
 			return getenv('VK_CONFIRMATION_CODE');
 			break;
 		case 'message_new':
+			$formula = '3*x^2 - 4*y + 3/y';
+			$precision = 2; 
 			$request_params = array('user_id' => $data->object->user_id, 'message' => 'Message text', 'access_token' => getenv('VK_SECRET_TOKEN'), 'v' => '5.69');
 			try {
 			    $parser = new FormulaParser($formula, $precision);
 			    $result = $parser->getResult();
-			    $request_params['message'] = 'Ответ: '.number_format($result[1], 2, '.', ',');
+			    $request_params['message'] = 'Ответ: '.number_format($result[1], $precision, '.', ',');
 			} catch (\Exception $e) {
 			    $request_params['message'] = 'Указана неверная формула, попробуйте снова!';
 			}
