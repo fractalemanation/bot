@@ -30,13 +30,9 @@ $app->post('/bot', function() use($app) {
 			$formula = $data->object->body;
 			$precision = 2; 
 			$request_params = array('user_id' => $data->object->user_id, 'message' => 'Message text', 'access_token' => getenv('VK_SECRET_TOKEN'), 'v' => '5.69');
-			try {
-			    $parser = new FormulaParser($formula, $precision);
-			    $result = $parser->getResult();
-			    $request_params['message'] = 'Ответ: '.number_format($result['1'], $precision, '.', ',');
-			} catch (\Exception $e) {
-			    $request_params['message'] = 'Указана неверная формула, попробуйте снова!';
-			}
+		    $parser = new FormulaParser($formula, $precision);
+		    $result = $parser->getResult();
+		    $request_params['message'] = 'Ответ: '.number_format($result['1'], $precision, '.', ',');
 			file_get_contents('https://api.vk.com/method/messages.send?'.http_build_query($request_params));
 			return 'ok';
 			break;
