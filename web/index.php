@@ -30,7 +30,7 @@ $app->post('/bot', function() use($app) {
 			return 'ok';
 			break;
 	}
-	return 'wasted';
+	return 'wastedEnd';
 });
 
 $app->run();
