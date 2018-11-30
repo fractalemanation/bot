@@ -25,7 +25,7 @@ $app->post('/bot', function() use($app) {
 			return getenv('VK_CONFIRMATION_CODE');
 			break;
 		case 'message_new':
-			$request_params = array('user_id' => $data->object->user_id, 'message' => 'Test', 'access_token' => getenv('VK_TOKEN'), 'v' => '5.92');
+			$request_params = array('user_id' => $data->object->user_id, 'message' => 'Test', 'access_token' => getenv('VK_SECRET_TOKEN'), 'v' => '5.92');
 			file_get_contents('https://api.vk.com/method/messages.send?'.http_build_query($request_params));
 			return 'ok';
 	}
